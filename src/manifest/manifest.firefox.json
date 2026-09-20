@@ -1,0 +1,21 @@
+{
+  "background": {
+    "scripts": ["background/index.js"],
+    "type": "module"
+  },
+  "sidebar_action": {
+    "default_panel": "panel/panel.html",
+    "default_title": "WPBleeder",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    },
+    "open_at_install": false
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "wpbleeder@wpbleeder.dev",
+      "strict_min_version": "115.0"
+    }
+  }
+}

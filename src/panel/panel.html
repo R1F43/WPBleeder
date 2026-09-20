@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WPBleeder</title>
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body>
+  <!-- Header bar (single compact bar) -->
+  <header id="header" class="header">
+    <div class="header-left">
+      <div id="target-domain" class="target-domain">No WordPress site detected</div>
+      <button id="btn-reset" class="icon-btn icon-btn-sm" title="Clear results & start over (re-run passive scan)" aria-label="Clear results & start over">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+      </button>
+    </div>
+    <div class="header-right">
+      <!-- Status indicator: dot + label -->
+      <div id="status-indicator" class="status-indicator">
+        <span id="status-dot" class="status-dot status-idle"></span>
+        <span id="status-label" class="status-label">idle</span>
+      </div>
+      <!-- Gear icon for settings drawer -->
+      <button id="btn-settings" class="icon-btn" title="Settings" aria-label="Settings">
+        <!-- Lucide gear/settings SVG -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+      </button>
+      <!-- Power/abort button -->
+      <button id="btn-power" class="icon-btn icon-btn-round" title="Toggle extension" aria-label="Toggle extension">
+        <!-- Lucide power SVG -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/></svg>
+      </button>
+      <!-- Close panel button -->
+      <button id="btn-close-panel" class="icon-btn" title="Close panel" aria-label="Close panel">
+        <!-- Lucide X SVG -->
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Settings drawer (hidden by default, slides down) -->
+  <div id="settings-drawer" class="settings-drawer">
+    <!-- Content injected by settings-drawer.js -->
+  </div>
+
+  <!-- Main content area (disabled when extension is off) -->
+  <main id="main-content" class="main-content">
+    <!-- Scan category chips -->
+    <div id="scan-chips" class="chip-row">
+      <!-- Chips injected by chips.js -->
+    </div>
+
+    <!-- Scan button -->
+    <div class="scan-btn-container">
+      <div class="scan-btn-row">
+        <button id="btn-scan" class="scan-btn" disabled>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <span id="scan-btn-label">Start scan (0 selected)</span>
+        </button>
+        <button id="btn-stop" class="stop-btn" title="Stop active scan" disabled>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="5" width="14" height="14" rx="2"/></svg>
+          <span>Stop</span>
+        </button>
+      </div>
+      <div id="progress-bar" class="progress-bar">
+        <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+      </div>
+    </div>
+
+    <!-- Metric cards -->
+    <div class="metric-cards">
+      <div id="card-version" class="metric-card" title="View core overview">
+        <div class="metric-label">Core version</div>
+        <div id="metric-version" class="metric-value">–</div>
+      </div>
+      <div id="card-plugins" class="metric-card" title="View plugins">
+        <div class="metric-label">Plugins</div>
+        <div id="metric-plugins" class="metric-value">–</div>
+      </div>
+      <div id="card-users" class="metric-card" title="View users">
+        <div class="metric-label">Users</div>
+        <div id="metric-users" class="metric-value">–</div>
+      </div>
+      <div id="card-findings" class="metric-card" title="View findings">
+        <div class="metric-label">Findings</div>
+        <div id="metric-findings" class="metric-value">–</div>
+      </div>
+      <div id="card-firewall" class="metric-card" title="View firewall & security">
+        <div class="metric-label">Firewall</div>
+        <div id="metric-firewall" class="metric-value">–</div>
+      </div>
+    </div>
+
+    <!-- Tab bar -->
+    <nav id="tab-bar" class="tab-bar">
+      <!-- Tabs injected by tabs.js -->
+    </nav>
+
+    <!-- Tab content -->
+    <div id="tab-content" class="tab-content">
+      <!-- Content rendered per-tab by tabs.js -->
+    </div>
+  </main>
+
+  <script type="module" src="panel.js"></script>
+</body>
+</html>

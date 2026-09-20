@@ -1,0 +1,10 @@
+{
+  "background": {
+    "service_worker": "background/index.js",
+    "type": "module"
+  },
+  "permissions": ["storage", "activeTab", "tabs", "sidePanel"],
+  "side_panel": {
+    "default_path": "panel/panel.html"
+  }
+}

@@ -1,0 +1,64 @@
+﻿{
+    "manifest_version":  3,
+    "name":  "WPBleeder",
+    "version":  "1.0.0",
+    "description":  "WordPress reconnaissance for authorized security testing â€” by R1F43",
+    "permissions":  [
+                        "storage",
+                        "activeTab",
+                        "tabs"
+                    ],
+    "host_permissions":  [
+                             "\u003call_urls\u003e"
+                         ],
+    "icons":  {
+                  "16":  "icons/icon-16.png",
+                  "32":  "icons/icon-32.png",
+                  "48":  "icons/icon-48.png",
+                  "128":  "icons/icon-128.png"
+              },
+    "content_scripts":  [
+                            {
+                                "matches":  [
+                                                "\u003call_urls\u003e"
+                                            ],
+                                "js":  [
+                                           "content/passive-detect.js"
+                                       ],
+                                "run_at":  "document_idle"
+                            }
+                        ],
+    "action":  {
+                   "default_icon":  {
+                                        "16":  "icons/icon-16.png",
+                                        "32":  "icons/icon-32.png",
+                                        "48":  "icons/icon-48.png"
+                                    },
+                   "default_title":  "WPBleeder"
+               },
+    "options_ui":  {
+                       "page":  "options/options.html",
+                       "open_in_tab":  false
+                   },
+    "background":  {
+                       "scripts":  [
+                                       "background/index.js"
+                                   ],
+                       "type":  "module"
+                   },
+    "sidebar_action":  {
+                           "default_panel":  "panel/panel.html",
+                           "default_title":  "WPBleeder",
+                           "default_icon":  {
+                                                "16":  "icons/icon-16.png",
+                                                "32":  "icons/icon-32.png"
+                                            },
+                           "open_at_install":  false
+                       },
+    "browser_specific_settings":  {
+                                      "gecko":  {
+                                                    "id":  "wpbleeder@wpbleeder.dev",
+                                                    "strict_min_version":  "115.0"
+                                                }
+                                  }
+}

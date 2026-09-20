@@ -1,0 +1,14 @@
+{
+  "name": "wpbleeder",
+  "version": "1.0.0",
+  "description": "WordPress reconnaissance browser extension for authorized security testing",
+  "author": "R1F43 <R1F43@proton.me>",
+  "private": true,
+  "scripts": {
+    "build:chrome": "node scripts/build.js chrome",
+    "build:firefox": "node scripts/build.js firefox",
+    "build:all": "node scripts/build.js chrome && node scripts/build.js firefox",
+    "clean": "node -e \"require('fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "devDependencies": {}
+}
